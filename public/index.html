@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Film Randomizer</title>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+  <h1 id="title"></h1>
+  <p id="last-watched">Last Watched: <span></span></p>
+  <p id="watched-count">Watch Count: <span></span></p>
+  <button id="another">Another!</button>
+  <button id="watch">Let's watch it!</button>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var films;
+      var currentFilm;
+
+      $.getJSON('/films', function(data) {
+        films = data;
+        showRandomFilm(films);
+      });
+
+      $('#another').click(function() {
+        showRandomFilm(films);
+      });
+
+      $('#watch').click(function() {
+        $.post('/films/' + currentFilm._id + '/watch', null, function(film) {
+          showFilm(film);
+        });
+      });
+
+      function showRandomFilm(films) {
+        currentFilm = films[Math.floor(Math.random() * films.length)];
+        showFilm(currentFilm);
+      }
+
+      function showFilm(film) {
+        $('#title').text(film.title);
+        $('#last-watched span').text(film.lastWatched || 'Never :(');
+        $('#watched-count span').text(film.watchedCount);
+      }
+    });
+  </script>
+</body>
+</html>
