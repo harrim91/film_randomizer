@@ -24,7 +24,6 @@ for (var i = 0; i < data.length; i++) {
     console.log(`problem with request: ${err.message}`);
   });
 
-  // write data to request body
   req.write(postData);
   req.end();
 }
