@@ -5,8 +5,10 @@ const yargs = require('yargs');
 gulp.task('mocha', () => {
   let argv = yargs.alias('w', 'watch').argv;
 
-  if(argv.w) gulp.watch(['app/**/*.js', 'test/unit/**/*.spec.js'], ['mocha']);
+  if(argv.w) gulp.watch(['app/**/*.js', 'spec/unit/**/*.spec.js'], ['mocha']);
 
-  gulp.src('test/unit/**/*.spec.js', { read: false })
-    .pipe(mocha());
+  gulp.src('spec/unit/**/*.spec.js', { read: false })
+    .pipe(mocha({
+      opts: './mocha.opts'
+    }));
 });

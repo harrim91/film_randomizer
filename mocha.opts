@@ -1,0 +1,5 @@
+--require ./mocha.conf.js
+--reporter spec
+--ui bdd
+--bail
+--colors

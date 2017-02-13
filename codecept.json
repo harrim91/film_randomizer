@@ -1,0 +1,17 @@
+{
+  "tests": "./spec/features/**/*.feature.js",
+  "timeout": 10000,
+  "output": "./spec/features/output",
+  "helpers": {
+    "WebDriverIO": {
+      "url": "http://localhost:3000",
+      "browser": "chrome"
+    }
+  },
+  "include": {
+    "I": "./spec/features/steps_file.js"
+  },
+  "bootstrap": "./spec/features/bootstrap.js",
+  "mocha": {},
+  "name": "film_randomizer"
+}
